@@ -1,13 +1,17 @@
-[![Build Status](https://secure.travis-ci.org/tjfontaine/node-dns.png)](http://travis-ci.org/tjfontaine/node-dns)
+node-dig
+========
 
-native-dns -- A replacement DNS stack for node.js
-=================================================
+node-dig is a node implementation of the Unix command `dig`, **fork from and based on tjfontaine/node-dns**.
+
+### What's different?
+
+We modified the packet generator, made it possible to customize DNS Header to be sent. (for the purpose that to support `[no]Recursion Desired` in previous, but original node-dns has hard-coded the `RD` bit to `1`, so we hack it).
 
 Installation
 ------------
 
 ```
-npm install native-dns
+npm install node-dig
 ```
 
 Client
@@ -24,7 +28,7 @@ Beyond matching the upstream module, native-dns also provides a method for
 customizing queries.
 
 ```javascript
-var dns = require('native-dns');
+var dns = require('node-dig');
 var util = require('util');
 
 var question = dns.Question({
@@ -38,6 +42,11 @@ var req = dns.Request({
   question: question,
   server: { address: '8.8.8.8', port: 53, type: 'udp' },
   timeout: 1000,
+  // customize header
+  header: {
+    // no Recursion Desired
+    rd: 0
+  }
 });
 
 req.on('timeout', function () {
@@ -68,6 +77,7 @@ Request creation takes an object with the following fields
     * `type` -- a string indicating `udp` or `tcp` (optional, default `udp`)
 You do not need to indicate ipv4 or ipv6, the backend will handle that
   - a string ip address
+ * `header` -- DNS Header set(optional)
  * `timeout` -- a number in milliseconds indicating how long to wait for the
 request to finish. (optional, default 4000)
  * `try_edns` -- a boolean indicating whether to use an `EDNSPacket` (optional)
@@ -123,151 +133,3 @@ Events:
  * `ready` -- Emitted after hosts and name servers have been loaded
  * `unready` -- Emitted when hosts and name servers configuration is being
 reloaded.
-
-Server
-------
-
-There is also a rudimentary server implementation
-
-```javascript
-var dns = require('native-dns');
-var server = dns.createServer();
-
-server.on('request', function (request, response) {
-  //console.log(request)
-  response.answer.push(dns.A({
-    name: request.question[0].name,
-    address: '127.0.0.1',
-    ttl: 600,
-  }));
-  response.answer.push(dns.A({
-    name: request.question[0].name,
-    address: '127.0.0.2',
-    ttl: 600,
-  }));
-  response.additional.push(dns.A({
-    name: 'hostA.example.org',
-    address: '127.0.0.3',
-    ttl: 600,
-  }));
-  response.send();
-});
-
-server.on('error', function (err, buff, req, res) {
-  console.log(err.stack);
-});
-
-server.serve(15353);
-```
-
-Server creation
-
- * `createServer` and `createUDPServer` -- both create a `UDP` based server,
-they accept an optional object for configuration,
-  - `{ dgram_type: 'udp4' }` is the default option, the other is `udp6`
- * `createTCPServer` -- creates a TCP based server
-
-Server methods
-
- * `serve(port, [address])` -- specify which port and optional address to listen
-on
- * `close()` -- stop the server/close sockets.
-
-Server events
-
- * `listening` -- emitted when underlying socket is listening
- * `close` -- emitted when the underlying socket is closed
- * `request` -- emitted when a dns message is received, and the packet was
-successfully unpacked, passes `(request, response)`
-  - Both `request` and `response` are instances of `Packet` when you're finished
-creating the response, you merely need to call `.send()` and the packet will
-DoTheRightThing
- * `error` -- emitted when unable to properly unpack the packet, passed `(err, msg, response)`
- * `socketError` -- remap of the underlying socket for the server, passes `(err, socket)`
-
-Packet
-------
-
-Properties:
-
- * `header`
-  - `id` -- request id
-  - `qdcount` -- the number of questions (inferred from array size)
-  - `ancount` -- the number of questions (inferred from array size)
-  - `nscount` -- the number of questions (inferred from array size)
-  - `arcount` -- the number of questions (inferred from array size)
-  - `qr` -- is a query response
-  - `opcode`
-  - `aa` -- Authoritative Answer
-  - `tc` -- Truncation bit
-  - `rd` -- Recursion Desired
-  - `ra` -- Recursion Available
-  - `res1` -- Reserved field
-  - `res2` -- Reserved field
-  - `res3` -- Reserved field
-  - `rcode` -- Response Code (see `consts.NAME_TO_RCODE`)
- * `question` -- array of `Question`s
- * `answer` -- array of `ResourceRecord`s
- * `authority` -- array of `ResourceRecord`s
- * `additional` -- array of `ResourceRecord`s
-
-Methods:
-
- * `send()` -- Handles sending the packet to the right end point
-
-Question
---------
-
-A `Question` is instantiated by passing an object like:
-
- * `name` -- i.e. 'www.google.com' (required)
- * `type` -- Either the string representation of the record type, or the integer
-value, see `consts.NAME_TO_QTYPE` (default: 'A')
- * `class` -- The class of service, default to 1 meaning internet
-
-ResourceRecord
---------------
-
-ResourceRecords are what populate `answer`, `authority`, and `additional`.
-This is a generic type, and each derived type inherits the following properties:
-
- * `name` -- The name of the resource
- * `type` -- The numerical representation of the resource record type
- * `class` -- The numerical representation of the class of service (usually 1 for internet)
- * `ttl` -- The Time To Live for the record, in seconds
-
-Available Types:
-
- * `SOA`
-  - `primary` -- string
-  - `admin` -- string
-  - `serial` -- number
-  - `refresh` -- number
-  - `retry` -- number
-  - `expiration` -- number
-  - `minimum` -- number
- * `A` and `AAAA`
-  - `address` -- string
- * `MX`
-  - `priority` -- number
-  - `exchange` -- string
- * `TXT`
-  - `data` -- array of strings
- * `SRV`
-  - `priority` -- number
-  - `weight` -- number
-  - `port` -- number
-  - `target` -- string
- * `NS`
-  - `data` -- string
- * `CNAME`
-  - `data` -- string
- * `PTR`
-  - `data` -- string
- * `NAPTR`
-  - `order` -- number
-  - `preference` -- number
-  - `flags` -- string
-  - `service` -- string
-  - `regexp` -- string
-  - `replacement` -- string

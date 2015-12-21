@@ -1,28 +1,26 @@
 {
-  "name": "native-dns",
-  "version": "0.7.0",
+  "name": "node-dig",
+  "version": "0.0.1",
   "authors": [
     "Timothy J Fontaine <tjfontaine@gmail.com> (http://atxconsulting.com)",
     "Greg Slepak <contact@taoeffect.com> (https://twitter.com/taoeffect)",
-    "Matthieu Rakotojaona"
+    "Matthieu Rakotojaona",
+    "ran <abbshrsoufii@outlook.com>"
   ],
-  "description": "Replacement for the core DNS module, includes server implementation",
+  "description": "a node implementation of the unix command `dig`",
   "keywords": [
     "dns",
     "bind",
     "native"
   ],
-  "homepage": "http://github.com/tjfontaine/node-dns",
-  "bugs": {
-    "url": "http://github.com/tjfontaine/node-dns/issues"
-  },
+  "homepage": "http://gitlab.widget-inc.com/huanran.sun/node-dig",
   "repository": {
     "type": "git",
-    "url": "http://github.com/tjfontaine/node-dns.git"
+    "url": "http://gitlab.widget-inc.com/huanran.sun/node-dig.git"
   },
   "main": "dns.js",
   "engines": {
-    "node": ">= 0.5.0"
+    "node": ">= 4.2.0"
   },
   "scripts": {
     "test": "nodeunit test"
