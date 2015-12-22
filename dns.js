@@ -20,19 +20,17 @@
 
 "use strict";
 
-exports.platform = require('./lib/platform');
-
 var client = require('./lib/client');
-exports.lookup = client.lookup;
-exports.resolve = client.resolve;
-exports.resolve4 = client.resolve4;
-exports.resolve6 = client.resolve6;
-exports.resolveMx = client.resolveMx;
-exports.resolveTxt = client.resolveTxt;
-exports.resolveSrv = client.resolveSrv;
-exports.resolveNs = client.resolveNs;
-exports.resolveCname = client.resolveCname;
-exports.reverse = client.reverse;
+// exports.lookup = client.lookup;
+// exports.resolve = client.resolve;
+// exports.resolve4 = client.resolve4;
+// exports.resolve6 = client.resolve6;
+// exports.resolveMx = client.resolveMx;
+// exports.resolveTxt = client.resolveTxt;
+// exports.resolveSrv = client.resolveSrv;
+// exports.resolveNs = client.resolveNs;
+// exports.resolveCname = client.resolveCname;
+// exports.reverse = client.reverse;
 
 var consts = require('native-dns-packet').consts;
 exports.BADNAME = consts.BADNAME;
