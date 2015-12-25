@@ -1,7 +1,8 @@
 node-dig
 ========
 
-node-dig is a node implementation of the Unix command `dig`, **fork from and based on tjfontaine/node-dns**.
+node-dig is a library based on **tjfontaine/native-dns-packet** that enable the more powerful ability to manipulate DNS request, comparing to the original `require("dns")` module, it exposed the DNS underlying mechanism to Node.js layer. It's easy to build customized DNS utilities base on it, such as Unix command `dig`.
+
 
 ### What's different?
 
