@@ -7,7 +7,21 @@ node-dig is a node implementation of the Unix command `dig`, **fork from and bas
 
 We modified the packet generator, made it possible to customize DNS Header to be sent. (for the purpose that to support `[no]Recursion Desired` in previous, but original node-dns has hard-coded the `RD` bit to `1`, so we hack it).
 
-for other fields, jump to https://www.ietf.org/rfc/rfc1035.txt (4.1.1. Header section format)
+```coffee
+# supported DNS request header fields
+
+# jump to https://www.ietf.org/rfc/rfc1035.txt (4.1.1. Header section format) for a detail view.
+qr
+opcode
+aa
+tc
+rd
+ra
+res1
+res2
+res3
+rcode
+```
 
 Installation
 ------------
