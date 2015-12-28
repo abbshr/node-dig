@@ -31,7 +31,7 @@ Installation
 npm install node-dig
 ```
 
-Request
+Usages
 -------
 
 ```js
@@ -67,6 +67,50 @@ var req = dig
 req.send();
 ```
 
+API
+---
+
+## Class: `Question`
+
+```js
+var question = dig.Question(queryType);
+```
+
+## Class: `Request`
+
+```js
+var request = require('node-dig').Request(options);
+```
+
+There are only two methods on `request`
+
+ * `request.send` -- sends the actual request to the remote endpoint
+ * `request.cancel` -- cancels the request and ignores any responses
+ 
+QueryType
+---------
+
+queryTypes is an object with the following fields:
+
++ `name`: server name
++ `type`: query type
+
+the `type` list below are available:
+
+```
+'A'
+'AAAA'
+'NS'
+'CNAME'
+'PTR'
+'NAPTR'
+'TXT'
+'MX'
+'SRV'
+'SOA'
+'TLSA'
+```
+ 
 Options
 -------
 
@@ -84,11 +128,9 @@ if you hadn't specified this field, it'll be setted to system wide `nameserver` 
  * `header` -- DNS Header set(optional), see rfc1035 for details.
  * `timeout` -- a number in milliseconds indicating how long to wait for the
 request to finish. (optional, default 4000)
-
-There are only two methods
-
- * `send` -- sends the actual request to the remote endpoint
- * `cancel` -- cancels the request and ignores any responses
+ 
+Events type
+-----------
 
 Request emits the following events
 
