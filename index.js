@@ -95,3 +95,11 @@ exports.Question = function (opts) {
   return q;
 };
 exports.Request = client.Request;
+
+// support mock test
+exports.mock = function(mockOptions) {
+  this.Request.mock = false;
+  
+  if (mockOptions)
+    this.Request.mock = mockOptions;
+};
