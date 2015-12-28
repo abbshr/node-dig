@@ -97,9 +97,11 @@ exports.Question = function (opts) {
 exports.Request = client.Request;
 
 // support mock test
-exports.mock = function(mockOptions) {
-  this.Request.mock = false;
-  
-  if (mockOptions)
-    this.Request.mock = mockOptions;
-};
+Object.defineProperty(exports, 'mock', {
+  set: function(mockOptions) {
+    this.Request.mock = false;
+    
+    if (mockOptions)
+      this.Request.mock = mockOptions;
+  }
+});
