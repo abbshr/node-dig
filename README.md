@@ -139,3 +139,35 @@ answer is an instance of `Packet`
  * `timeout` -- Fired when the timeout is reached
  * `cancelled` -- Fired if the request is cancelled
  * `end` -- Always fired after a request finished, regardless of disposition
+
+Mock
+----
+
+we support mock by mounting an mock settings object on the exposed module.
+
+### Usage
+
+```js
+var dig = require('node-dig');
+
+// into mock env
+dig.mock = {
+  timeout: true
+};
+
+// main logic goes here...
+
+// jump out of mock env any time
+dig.mock = null;
+
+// continue ...
+```
+
+### mock settings object
+
+The following fields are available:
+
++ `timeout`: <Boolean>
++ `end`: <Boolean>
++ `message`: <Object>
++ `cancelled`: <Boolean>
