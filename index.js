@@ -95,3 +95,13 @@ exports.Question = function (opts) {
   return q;
 };
 exports.Request = client.Request;
+
+// support mock test
+Object.defineProperty(exports, 'mock', {
+  set: function(mockOptions) {
+    this.Request.mock = false;
+    
+    if (mockOptions)
+      this.Request.mock = mockOptions;
+  }
+});
