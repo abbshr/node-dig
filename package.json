@@ -13,10 +13,10 @@
     "bind",
     "native"
   ],
-  "homepage": "http://gitlab.widget-inc.com/huanran.sun/node-dig",
+  "homepage": "http://github.com/abbshr/node-dig",
   "repository": {
     "type": "git",
-    "url": "http://gitlab.widget-inc.com/huanran.sun/node-dig.git"
+    "url": "http://github.com/abbshr/node-dig.git"
   },
   "main": "index.js",
   "engines": {
