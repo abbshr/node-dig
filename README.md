@@ -3,7 +3,6 @@ node-dig
 
 node-dig is a library based on **tjfontaine/native-dns-packet** that enable the more powerful ability to manipulate DNS request, comparing to the original `require("dns")` module, it exposed the DNS underlying mechanism to Node.js layer. It's easy to build customized DNS utilities base on it, such as Unix command `dig`.
 
-
 ### What's different?
 
 We modified the packet generator, made it possible to customize DNS Header to be sent. (for the purpose that to support `[no]Recursion Desired` in previous, but original node-dns has hard-coded the `RD` bit to `1`, so we hack it).
@@ -86,7 +85,7 @@ There are only two methods on `request`
 
  * `request.send` -- sends the actual request to the remote endpoint
  * `request.cancel` -- cancels the request and ignores any responses
- 
+
 QueryType
 ---------
 
@@ -110,7 +109,7 @@ the `type` list below are available:
 'SOA'
 'TLSA'
 ```
- 
+
 Options
 -------
 
@@ -128,7 +127,7 @@ if you hadn't specified this field, it'll be setted to system wide `nameserver` 
  * `header` -- DNS Header set(optional), see rfc1035 for details.
  * `timeout` -- a number in milliseconds indicating how long to wait for the
 request to finish. (optional, default 4000)
- 
+
 Events type
 -----------
 
