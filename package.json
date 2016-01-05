@@ -1,5 +1,5 @@
 {
-  "name": "node-dig",
+  "name": "@upyun-dev/node-dig",
   "version": "0.0.2",
   "authors": [
     "Timothy J Fontaine <tjfontaine@gmail.com> (http://atxconsulting.com)",
