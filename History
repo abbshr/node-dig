@@ -1,0 +1,22 @@
+0.0.3 / 2016-08-16
+==================
+
++ 规范化目录结构
++ 删除无用示例和测试
+
+0.0.2 / 2015-12-22
+==================
+
++ lib/client.js: clean up
++ lib/client.js: only emit "timeout" when not setting or setted to be true
++ lib/client.js: fix a logical bug
++ index.js: 使用setter定义mock attribute
++ README: 增加mock描述
++ index.js | lib/client.js: 添加mock环境选项
++ README.md: 添加request header field支持说明
++ lib/pending.js: 去除try_edns字段
++ lib/client.js: 去掉封装函数, 仅保留了核心的Request对象, 去掉不必
+要的cache功能
++ lib/utils.js: 添加`/etc/resolv.conf`解析器
++ dns.js: 取消封装功能的支持
++ lib/*: 支持自定义DNS报文Header部分的值
