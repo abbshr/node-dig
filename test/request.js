@@ -1,4 +1,4 @@
-var dns = require('../dns'),
+var dns = require('..'),
   Request = dns.Request,
   Question = dns.Question,
   consts = dns.consts,
@@ -208,7 +208,7 @@ exports.longName = function (test) {
     didErr = true;
   });
   r.on('end', function () {
-    test.ok(didErr, 'We did not err');
+    test.ok(!didErr, 'We did not err');
     test.done();
   });
   r.send();
