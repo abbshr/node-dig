@@ -1,6 +1,6 @@
 {
   "name": "node-dig",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "authors": [
     "Timothy J Fontaine <tjfontaine@gmail.com> (http://atxconsulting.com)",
     "Greg Slepak <contact@taoeffect.com> (https://twitter.com/taoeffect)",
@@ -13,10 +13,10 @@
     "bind",
     "native"
   ],
-  "homepage": "http://github.com/abbshr/node-dig",
+  "homepage": "http://gitlab.widget-inc.com/upyun-dev/node-dig",
   "repository": {
     "type": "git",
-    "url": "http://github.com/abbshr/node-dig.git"
+    "url": "ssh://gitlab@gitlab.widget-inc.com:65422/upyun-dev/node-dig.git"
   },
   "main": "index.js",
   "engines": {
@@ -26,8 +26,15 @@
     "ipaddr.js": "~0.1.3",
     "native-dns-packet": "~0.1.1"
   },
+  "scripts": {
+    "test": "./node_modules/nodeunit/bin/nodeunit test",
+    "lint": "./node_modules/gulp/bin/gulp.js"
+  },
   "devDependencies": {
-    "mocha": "*",
-    "should": "*"
+    "gulp": "^3.9.1",
+    "gulp-jscs": "^4.0.0",
+    "gulp-jshint": "^2.0.1",
+    "jshint": "^2.9.3",
+    "nodeunit": ">= 0.7.4"
   }
 }

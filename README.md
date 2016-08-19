@@ -27,7 +27,13 @@ Installation
 ------------
 
 ```
-npm install node-dig
+npm i node-dig
+```
+
+Test
+
+```
+npm test
 ```
 
 Usages
