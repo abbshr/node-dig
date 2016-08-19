@@ -27,10 +27,14 @@
     "native-dns-packet": "~0.1.1"
   },
   "scripts": {
-    "test": "./node_modules/nodeunit/bin/nodeunit test"
+    "test": "./node_modules/nodeunit/bin/nodeunit test",
+    "lint": "./node_modules/gulp/bin/gulp.js"
   },
   "devDependencies": {
-    "optimist": "",
+    "gulp": "^3.9.1",
+    "gulp-jscs": "^4.0.0",
+    "gulp-jshint": "^2.0.1",
+    "jshint": "^2.9.3",
     "nodeunit": ">= 0.7.4"
   }
 }
