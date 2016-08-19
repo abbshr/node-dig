@@ -18,7 +18,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE
 
-"use strict";
+'use strict';
 
 var client = require('./lib/client');
 // exports.lookup = client.lookup;
@@ -47,7 +47,7 @@ exports.SERVFAIL = consts.SERVFAIL;
 exports.TIMEOUT = consts.TIMEOUT;
 exports.consts = consts;
 
-var definedTypes = [
+[
   'A',
   'AAAA',
   'NS',
@@ -58,14 +58,14 @@ var definedTypes = [
   'MX',
   'SRV',
   'SOA',
-  'TLSA',
-].forEach(function (type) {
-  exports[type] = function (opts) {
+  'TLSA'
+].forEach(function(type) {
+  exports[type] = function(opts) {
     var obj = {};
     opts = opts || {};
     obj.type = consts.nameToQtype(type);
     obj.class = consts.NAME_TO_QCLASS.IN;
-    Object.keys(opts).forEach(function (k) {
+    Object.keys(opts).forEach(function(k) {
       if (opts.hasOwnProperty(k) && ['type', 'class'].indexOf(k) == -1) {
         obj[k] = opts[k];
       }
@@ -74,7 +74,7 @@ var definedTypes = [
   };
 });
 
-exports.Question = function (opts) {
+exports.Question = function(opts) {
   var q = {}, qtype;
 
   opts = opts || {};
@@ -82,11 +82,11 @@ exports.Question = function (opts) {
   q.name = opts.name;
 
   qtype = opts.type || consts.NAME_TO_QTYPE.A;
-  if (typeof(qtype) === 'string' || qtype instanceof String)
+  if (typeof qtype === 'string' || qtype instanceof String)
     qtype = consts.nameToQtype(qtype.toUpperCase());
 
-  if (!qtype || typeof(qtype) !== 'number')
-    throw new Error("Question type must be defined and be valid");
+  if (!qtype || typeof qtype !== 'number')
+    throw new Error('Question type must be defined and be valid');
 
   q.type = qtype;
 
@@ -100,7 +100,6 @@ exports.Request = client.Request;
 Object.defineProperty(exports, 'mock', {
   set: function(mockOptions) {
     this.Request.mock = false;
-    
     if (mockOptions)
       this.Request.mock = mockOptions;
   }
