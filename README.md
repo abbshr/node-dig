@@ -3,6 +3,8 @@ node-dig
 
 [![Build Status](https://travis-ci.org/upyun-dev/node-dig.svg?branch=master)](https://travis-ci.org/upyun-dev/node-dig)
 
+[![Dependency Status](https://gemnasium.com/badges/github.com/upyun-dev/node-dig.svg)](https://gemnasium.com/github.com/upyun-dev/node-dig)
+
 node-dig is a library based on **tjfontaine/native-dns-packet** that enable the more powerful ability to manipulate DNS request, comparing to the original `require("dns")` module, it exposed the DNS underlying mechanism to Node.js layer. It's easy to build customized DNS utilities base on it, such as Unix command `dig`.
 
 ### What's different?
